@@ -1099,6 +1099,21 @@ class GroupIssueManager(ListMixin, RESTManager):
     _types = {"labels": types.ListAttribute}
 
 
+class GroupIteration(RESTObject):
+    pass
+
+
+class GroupIterationManager(ListMixin, RESTManager):
+    _path = "/groups/%(group_id)s/iterations"
+    _obj_cls = GroupIteration
+    _from_parent_attrs = {"group_id": "id"}
+    _list_filters = (
+        "state",
+        "search",
+    )
+    _types = {"labels": types.ListAttribute}
+
+
 class GroupLabel(SubscribableMixin, SaveMixin, ObjectDeleteMixin, RESTObject):
     _id_attr = "name"
 
@@ -1392,6 +1407,7 @@ class Group(SaveMixin, ObjectDeleteMixin, RESTObject):
         ("epics", "GroupEpicManager"),
         ("imports", "GroupImportManager"),
         ("issues", "GroupIssueManager"),
+        ("iterations", "GroupIterationManager"),
         ("labels", "GroupLabelManager"),
         ("members", "GroupMemberManager"),
         ("mergerequests", "GroupMergeRequestManager"),
