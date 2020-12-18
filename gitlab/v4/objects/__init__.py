@@ -1110,6 +1110,7 @@ class GroupIterationManager(ListMixin, RESTManager):
     _list_filters = (
         "state",
         "search",
+        "title",
     )
     _types = {"labels": types.ListAttribute}
 
